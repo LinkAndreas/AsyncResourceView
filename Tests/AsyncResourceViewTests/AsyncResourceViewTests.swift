@@ -9,6 +9,16 @@ final class AsyncResourceViewStoreTests: XCTestCase {
 
         expectState(of: sut, toEqual: .notRequested)
     }
+
+    func test_store_entersSuccessStateWhenResourceLoadingSucceeded() async throws {
+        let anyText = "any Text"
+        let (sut, loaderStub) = makeSUT()
+
+        loaderStub.loadResult = .success(anyText)
+        await sut.loadResource()
+
+        expectState(of: sut, toEqual: .success(anyText))
+    }
 }
 
 extension AsyncResourceViewStoreTests {
