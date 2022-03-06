@@ -29,6 +29,22 @@ final class AsyncResourceViewStoreTests: XCTestCase {
 
         expectState(of: sut, toEqual: .failure(error))
     }
+
+    func test_store_entersSuccessStateAfterResourceLoadingInitiallyFailed() async throws {
+        let anyText = "any Text"
+        let error = anyNSError()
+        let (sut, loaderStub) = makeSUT()
+
+        loaderStub.loadResult = .failure(error)
+        await sut.loadResource()
+
+        expectState(of: sut, toEqual: .failure(error))
+
+        loaderStub.loadResult = .success(anyText)
+        await sut.loadResource()
+
+        expectState(of: sut, toEqual: .success(anyText))
+    }
 }
 
 extension AsyncResourceViewStoreTests {
