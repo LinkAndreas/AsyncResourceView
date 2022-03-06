@@ -43,6 +43,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = "Andreas Link";
 			};
 			buildConfigurationList = 38D61C4827D4A0F900FF790A /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 13.0";
