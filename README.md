@@ -3,15 +3,15 @@
  
 <p align="center">
     <a href="https://github.com/LinkAndreas/AsyncResourceView/releases">
-        <img src="https://img.shields.io/badge/Version-1.0.0-05668D.svg"
+        <img src="https://img.shields.io/badge/Version-1.0.0-2C6075.svg"
              alt="Version: 1.0.0">
     </a>
-    <img src="https://img.shields.io/badge/Swift-5.5-028090.svg"
+    <img src="https://img.shields.io/badge/Swift-5.5-ECEBE4.svg"
          alt="Swift: 5.5">
-    <img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-00A896.svg"
+    <img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS-CC998D.svg"
         alt="Platforms: iOS, macOS">
     <a href="https://github.com/LinkAndreas/AsyncResourceView/blob/develop/LICENSE">
-        <img src="https://img.shields.io/badge/License-MIT-F0F3BD.svg"
+        <img src="https://img.shields.io/badge/License-MIT-5D5D8B.svg"
               alt="License: MIT">
     </a>
 </p>
