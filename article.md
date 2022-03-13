@@ -1,7 +1,5 @@
 # AsyncResourceView - Simplified Resource Loading
 
-## Motivation
-
 Today we are going to take a look at how we can deal with asynchronous data in SwiftUI applications. Modern apps heavily rely on resources that are received over the network, and hence may be affected by connectivity issues or data loss. If, for example, you travel by train within Germany, you may be surprised how often you will experience radio gaps or interruptions due to weak cellular reception. Hence, we as developers have to design our apps to include feedback when an action takes longer than expected and offer the ability to retry the action in case that it failed. This way, we can make our apps stand out, since they can cope with conditions that are far from optimal.
 
 This article introduces the reusable component `AsyncResourceView` that abstracts loading as well as failure states when fetching asynchronous data, such that we can focus on features rather than writing repetitive error-prone code.
