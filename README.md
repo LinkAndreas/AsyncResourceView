@@ -33,15 +33,14 @@ Modern apps heavily rely on resources that are received over the network, and he
 
 `AsyncResourceView` offers a consistent way to deal with loading as well as error states in SwiftUI applications. This way, developers can focus on features rather than writing repetitive error-prone code.
 
-Simple Example             |  Gallery Example
-:-------------------------:|:-------------------------:
-![](assets/simple_example_light.gif#gh-light-mode-only) ![](assets/simple_example_dark.gif#gh-dark-mode-only)  |  ![](assets/gallery_example_light.gif#gh-light-mode-only) ![](assets/gallery_example_dark.gif#gh-dark-mode-only)
-
 ## Installation
 
 Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
 
 ## Usage
+
+![](assets/simple_example_light.gif#gh-light-mode-only) 
+![](assets/simple_example_dark.gif#gh-dark-mode-only)
 
 Using `AsyncResourceView` within your project involves the following steps:
 
@@ -130,6 +129,9 @@ extension SimpleExampleApp {
 ```
 
 ## Gallery Example
+
+![](assets/gallery_example_light.gif#gh-light-mode-only) 
+![](assets/gallery_example_dark.gif#gh-dark-mode-only)
 
 In addition to the *Simple Example*, the package also comes with the *Gallery Example* where colors are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. In the latter case, a retry button is shown in case the action failed. 
 
