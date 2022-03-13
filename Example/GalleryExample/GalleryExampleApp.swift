@@ -10,14 +10,17 @@ struct AsyncResourceGalleryApp: App {
 
     var body: some Scene {
         WindowGroup {
-            GalleryView(
-                store: store,
-                itemView: { item -> AnyView in
-                    let store = AsyncResourceViewStore<Color>(loader: loader(item))
-                    return AnyView(GalleryItemView(store: store))
-                }
-            )
-            .onAppear(perform: store.onAppear)
+            NavigationView {
+                GalleryView(
+                    store: store,
+                    itemView: { item -> AnyView in
+                        let store = AsyncResourceViewStore<Color>(loader: loader(item))
+                        return AnyView(GalleryItemView(store: store))
+                    }
+                )
+                .onAppear(perform: store.onAppear)
+                .navigationTitle("Gallery Example")
+            }
         }
     }
 }
