@@ -13,7 +13,7 @@ struct SimpleExampleApp: App {
                     notRequestedView: notRequestedView(load:),
                     successView: successView(resource:)
                 )
-                .navigationTitle("Async Resource Demo")
+                .navigationTitle("Simple Example")
             }
         }
     }
