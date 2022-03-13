@@ -33,6 +33,10 @@ Modern apps heavily rely on resources that are received over the network, and he
 
 `AsyncResourceView` offers a consistent way to deal with loading as well as error states in SwiftUI applications. This way, developers can focus on features rather than writing repetitive error-prone code.
 
+Simple Example             |  Gallery Example
+:-------------------------:|:-------------------------:
+![](assets/simple_example_light.gif#gh-light-mode-only) ![](assets/simple_example_dark.gif#gh-dark-mode-only)  |  ![](assets/gallery_example_light.gif#gh-light-mode-only) ![](assets/gallery_example_dark.gif#gh-dark-mode-only)
+
 ## Installation
 
 Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
