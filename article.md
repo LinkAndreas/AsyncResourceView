@@ -1,4 +1,4 @@
-# Async Resource View
+# AsyncResourceView - Simplified Resource Loading
 
 ## Motivation
 

@@ -241,6 +241,11 @@ struct GalleryItem: Hashable {
 }
 ```
 
+## Steps to build the component
+
+Please refer to the following article if you are interested in how I built the `AsyncResourceView`:
+- [AsyncResourceView - Simplified Resource Loading](https://github.com/LinkAndreas/AsyncResourceView/blob/develop/article.md)
+
 ## License
 
 This library is released under the [MIT License](http://opensource.org/licenses/MIT). See LICENSE for details.
