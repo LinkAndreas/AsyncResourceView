@@ -39,7 +39,92 @@ Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
 
 ## Usage
 
-To visualize how the component is used, let's implement a color gallery where items are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. As stated above, a retry button is shown in case the action failed. 
+Using `AsyncResourceView` within your project involves the following steps:
+
+1. Add the package to our project and import `AsyncResourceView` wherever it should be used within our component tree. 
+
+```swift
+import AsyncResourceView
+```
+
+2. Specify the loader that will provide the requested resource.
+
+```swift
+private func loader() async throws -> Int {
+    try await Task.sleep(nanoseconds: 2_000_000_000)
+    return 42
+}
+```
+3. Provide custom *notRequested*, *loading-* or *failure-* views as desired. Note that the default `notRequested` view is not visible and will request the resource from the loader as soon as the view appeared. In addition, the default *loading-* view wraps SwiftUI's spinner. Finally, the default *failure-* view comes with a counterclockwise error such that the user can retry the action in case that it failed. 
+
+```swift
+private func notRequestedView(load: @escaping () -> Void) -> AnyView {
+    AnyView(
+        Button("Load Resource", action: load)
+            .buttonStyle(.borderedProminent)
+    )
+}
+
+private func successView<Resource>(resource: Resource) -> AnyView {
+    AnyView(
+        Text(String(describing: resource))
+    )
+}
+```
+
+3. Instantiate the store given the loader and pass it to the `AsyncResourceView`.
+
+```swift
+AsyncResourceView(
+    store: AsyncResourceView.ViewStore(loader: loader),
+    notRequestedView: notRequestedView(load:),
+    successView: successView(resource:)
+)
+```
+
+As a result, we obtain the *Simple Example* where users can request an integer by tapping a button:
+
+```swift
+import AsyncResourceView
+import SwiftUI
+
+@main
+struct SimpleExampleApp: App {
+    var body: some Scene {
+        WindowGroup {
+            NavigationView {
+                AsyncResourceView(
+                    store: AsyncResourceView.ViewStore(loader: loader),
+                    notRequestedView: notRequestedView(load:),
+                    successView: successView(resource:)
+                )
+                .navigationTitle("Async Resource Demo")
+            }
+        }
+    }
+
+    private func notRequestedView(load: @escaping () -> Void) -> AnyView {
+        AnyView(
+            Button("Load Resource", action: load)
+                .buttonStyle(.borderedProminent)
+        )
+    }
+
+    private func successView<Resource>(resource: Resource) -> AnyView {
+        AnyView(
+            Text(String(describing: resource))
+        )
+    }
+}
+
+extension SimpleExampleApp {
+    private func loader() async throws -> Int {
+        try await Task.sleep(nanoseconds: 2_000_000_000)
+        return 42
+    }
+}
+```
+
 ## Gallery Example
 
 In addition to the *Simple Example*, the package also comes with the *Gallery Example* where colors are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. In the latter case, a retry button is shown in case the action failed. 
