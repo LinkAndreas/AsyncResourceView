@@ -39,6 +39,119 @@ Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
 
 ## Usage
 
+To visualize how the component is used, let's implement a color gallery where items are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. As stated above, a retry button is shown in case the action failed. 
+## Gallery Example
+
+In addition to the *Simple Example*, the package also comes with the *Gallery Example* where colors are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. In the latter case, a retry button is shown in case the action failed. 
+
+```swift
+@main
+struct AsyncResourceGalleryApp: App {
+    @StateObject
+    private var store: GalleryStore = .init()
+
+    var body: some Scene {
+        WindowGroup {
+            GalleryView(
+                store: store,
+                itemView: { item -> AnyView in
+                    let store = AsyncResourceViewStore<Color>(loader: loader(item))
+                    return AnyView(GalleryItemView(store: store))
+                }
+            )
+            .onAppear(perform: store.onAppear)
+        }
+    }
+}
+
+extension AsyncResourceGalleryApp {
+    private func loader(_ item: GalleryItem) -> (() async throws -> Color) {
+        return {
+            let duration = UInt64.random(in: 300_000_000 ... 3_000_000_000)
+            try await Task.sleep(nanoseconds: duration)
+            if Int.random(in: 0...5) == 4 {
+                throw NSError(domain: "", code: 42, userInfo: nil)
+            } else {
+                return item.color
+            }
+        }
+    }
+}
+```
+
+Since we do not specify a custom `notRequested` view, the default view is used that requests the resource as soon as it appeared. By wrapping the items in SwiftUI's `LazyVGrid` they are only created when needed.
+
+```swift
+struct GalleryView: View {
+    private var store: GalleryStore
+    private let columns: [GridItem] = [
+        GridItem(.flexible(minimum: 50), spacing: 50),
+        GridItem(.flexible(minimum: 50), spacing: 50),
+        GridItem(.flexible(minimum: 50), spacing: 50)
+    ]
+    private let itemView: (GalleryItem) -> AnyView
+
+    init(store: GalleryStore, itemView: @escaping (GalleryItem) -> AnyView) {
+        self.store = store
+        self.itemView = itemView
+    }
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 50) {
+                ForEach(store.items, id: \.self) { item in
+                    itemView(item)
+                        .frame(width: 100, height: 100)
+                }
+            }
+            .padding()
+        }
+    }
+}
+```
+
+Each of the items is driven by its own store, i.e., `AsyncResourceViewStore` that transitions between states depending on how long the action takes.
+
+```swift
+struct GalleryItemView: View {
+    private let store: AsyncResourceViewStore<Color>
+
+    init(store: AsyncResourceViewStore<Color>) {
+        self.store = store
+    }
+
+    var body: some View {
+        AsyncResourceView(store: store) { color in
+            AnyView(color)
+        }
+    }
+}
+```
+
+Finally, we create a `GalleryStore` that drives the composition and provides a color for each individual loader.
+
+```swift
+final class GalleryStore: ObservableObject {
+    @Published var items: [GalleryItem] = []
+
+    func onAppear() {
+        items = (0 ..< 100)
+            .map { _ in Color.random }
+            .map { GalleryItem(color: $0 )}
+    }
+}
+
+struct GalleryItem: Hashable {
+    let id: UUID
+    let color: Color
+
+    init(id: UUID = .init(), color: Color) {
+        self.id = id
+        self.color = color
+    }
+}
+```
+
 ## License
 
 This library is released under the [MIT License](http://opensource.org/licenses/MIT). See LICENSE for details.
