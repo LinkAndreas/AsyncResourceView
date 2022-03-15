@@ -241,9 +241,9 @@ struct GalleryItem: Hashable {
 }
 ```
 
-## Steps to build the component
+## Implementation
 
-Please refer to the following article if you are interested in how I built the `AsyncResourceView`:
+Please refer to the following article if you are interested in how I built the component:
 - [AsyncResourceView - Simplified Resource Loading](https://github.com/LinkAndreas/AsyncResourceView/blob/develop/article.md)
 
 ## License
