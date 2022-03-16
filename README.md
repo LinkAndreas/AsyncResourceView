@@ -40,8 +40,8 @@ Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
 
 ## Usage
 
-![](assets/simple_example_light.gif#gh-light-mode-only) 
-![](assets/simple_example_dark.gif#gh-dark-mode-only)
+![](assets/simple_example_light_optimized.gif#gh-light-mode-only) 
+![](assets/simple_example_dark_optimized.gif#gh-dark-mode-only)
 
 Using `AsyncResourceView` within your project involves the following steps:
 
@@ -131,8 +131,8 @@ extension SimpleExampleApp {
 
 ## Gallery Example
 
-![](assets/gallery_example_light.gif#gh-light-mode-only) 
-![](assets/gallery_example_dark.gif#gh-dark-mode-only)
+![](assets/gallery_example_light_optimized.gif#gh-light-mode-only) 
+![](assets/gallery_example_dark_optimized.gif#gh-dark-mode-only)
 
 In addition to the *Simple Example*, the package also comes with the *Gallery Example* where colors are arranged in a three-column grid. Each item features the `AsyncResourceView` to request its color from the loader that will either return a random color or fail after [0.3, 3.0] seconds. In the latter case, a retry button is shown in case the action failed. 
 
