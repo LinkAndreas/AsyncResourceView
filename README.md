@@ -31,6 +31,9 @@ Modern apps heavily rely on resources that are received over the network, and he
 
 `AsyncResourceView` offers a consistent way to deal with loading as well as error states in SwiftUI applications. This way, developers can focus on features rather than writing repetitive error-prone code.
 
+You may also refer to my article on Medium: 
+- [AsyncResourceView - Simple Resource Loading](https://linkandreas.medium.com/asyncresourceview-558ec1f49ea2)
+
 ## Installation
 
 Installation via [SwiftPM](https://swift.org/package-manager/) is supported.
