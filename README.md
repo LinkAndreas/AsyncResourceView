@@ -1,6 +1,6 @@
 ![](assets/logo_light.png#gh-light-mode-only)
 ![](assets/logo_dark.png#gh-dark-mode-only)
- 
+
 <p align="center">
     <a href="https://github.com/LinkAndreas/AsyncResourceView/releases">
         <img src="https://img.shields.io/badge/Version-1.0.0-2C6075.svg"
