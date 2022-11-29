@@ -40,7 +40,7 @@ public struct AsyncResourceView<
     public var body: some View {
         switch store.state {
         case .notRequested:
-            notRequestedView(loadResource)
+            notRequestedView(store.loadResource)
 
         case .loading:
             loadingView()
@@ -49,12 +49,8 @@ public struct AsyncResourceView<
             successView(resource)
 
         case let .failure(error):
-            failureView(error, loadResource)
+            failureView(error, store.loadResource)
         }
-    }
-
-    private func loadResource() {
-        Task { await store.loadResource() }
     }
 }
 

@@ -13,9 +13,10 @@ struct AsyncResourceGalleryApp: App {
             NavigationView {
                 GalleryView(
                     store: store,
-                    itemView: { item -> AnyView in
-                        let store = AsyncResourceViewStore<Color>(loader: loader(item))
-                        return AnyView(GalleryItemView(store: store))
+                    itemView: { item in
+                        GalleryItemView(
+                            store: AsyncResourceViewStore<Color>(loader: loader(item))
+                        )
                     }
                 )
                 .onAppear(perform: store.onAppear)

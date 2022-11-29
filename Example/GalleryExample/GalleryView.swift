@@ -3,16 +3,16 @@
 import AsyncResourceView
 import SwiftUI
 
-struct GalleryView: View {
+struct GalleryView<ItemView: View>: View {
     private var store: GalleryStore
     private let columns: [GridItem] = [
         GridItem(.flexible(minimum: 50), spacing: 50),
         GridItem(.flexible(minimum: 50), spacing: 50),
         GridItem(.flexible(minimum: 50), spacing: 50)
     ]
-    private let itemView: (GalleryItem) -> AnyView
+    private let itemView: (GalleryItem) -> ItemView
 
-    init(store: GalleryStore, itemView: @escaping (GalleryItem) -> AnyView) {
+    init(store: GalleryStore, itemView: @escaping (GalleryItem) -> ItemView) {
         self.store = store
         self.itemView = itemView
     }

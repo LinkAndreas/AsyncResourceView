@@ -12,7 +12,7 @@ struct GalleryItemView: View {
 
     var body: some View {
         AsyncResourceView(store: store) { color in
-            AnyView(color)
+            color
         }
     }
 }

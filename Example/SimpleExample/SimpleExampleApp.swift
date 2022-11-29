@@ -9,7 +9,7 @@ struct SimpleExampleApp: App {
         WindowGroup {
             NavigationView {
                 AsyncResourceView(
-                    store: AsyncResourceView.ViewStore(loader: loader),
+                    store: AsyncResourceViewStore(loader: loader),
                     notRequestedView: notRequestedView(load:),
                     successView: successView(resource:)
                 )
@@ -18,17 +18,13 @@ struct SimpleExampleApp: App {
         }
     }
 
-    private func notRequestedView(load: @escaping () -> Void) -> AnyView {
-        AnyView(
-            Button("Load Resource", action: load)
-                .buttonStyle(.borderedProminent)
-        )
+    private func notRequestedView(load: @escaping () -> Void) -> some View {
+        Button("Load Resource", action: load)
+            .buttonStyle(.borderedProminent)
     }
 
-    private func successView<Resource>(resource: Resource) -> AnyView {
-        AnyView(
-            Text(String(describing: resource))
-        )
+    private func successView<Resource>(resource: Resource) -> some View {
+        Text(String(describing: resource))
     }
 }
 
