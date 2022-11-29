@@ -15,23 +15,24 @@ public final class AsyncResourceViewStore<Resource>: ObservableObject {
     @Published public var state: State
 
     private var loader: Loader?
+    private var currentTask: Task<Void, Never>?
 
     public init(state: State = .notRequested, loader: Loader? = nil) {
         self.state = state
         self.loader = loader
     }
 
-    @MainActor
-    public func loadResource() async {
+    public func loadResource() {
         guard let loader = loader else { return }
 
         state = .loading
-
-        do {
-            let resource = try await loader()
-            state = .success(resource)
-        } catch {
-            state = .failure(error)
+        currentTask = Task { @MainActor in
+            do {
+                let resource = try await loader()
+                state = .success(resource)
+            } catch {
+                state = .failure(error)
+            }
         }
     }
 }
