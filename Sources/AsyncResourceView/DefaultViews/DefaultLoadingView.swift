@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-public struct AsyncResourceDefaultLoadingView: View {
+public struct DefaultLoadingView: View {
     private let title: String
 
     public init(title: String = "Loading") {
@@ -14,8 +14,9 @@ public struct AsyncResourceDefaultLoadingView: View {
     }
 }
 
-struct AsyncResourceDefaultLoadingView_Previews: PreviewProvider {
+struct DefaultLoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        AsyncResourceDefaultLoadingView()
+        DefaultLoadingView()
+            .preferredColorScheme(.dark)
     }
 }

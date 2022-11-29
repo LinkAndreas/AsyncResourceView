@@ -18,10 +18,8 @@ struct AsyncResourceView_Previews: PreviewProvider {
             AsyncResourceView(
                 store: AsyncResourceViewStore(loader: loader),
                 notRequestedView: { load in
-                    AnyView(
-                        Button("Load Resource", action: load)
-                            .buttonStyle(.borderedProminent)
-                    )
+                    Button("Load Resource", action: load)
+                        .buttonStyle(.borderedProminent)
                 },
                 successView: { text in
                     AnyView(Text(text))

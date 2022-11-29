@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-public struct AsyncResourceDefaultNotRequestedView: View {
+public struct DefaultNotRequestedView: View {
     private let load: () -> Void
 
     public init(load: @escaping () -> Void) {

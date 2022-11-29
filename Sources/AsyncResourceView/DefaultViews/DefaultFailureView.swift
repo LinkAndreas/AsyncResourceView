@@ -2,7 +2,7 @@
 
 import SwiftUI
 
-public struct AsyncResourceDefaultFailureView: View {
+public struct DefaultFailureView: View {
     private let error: Error
     private let retry: () -> Void
 
@@ -22,10 +22,10 @@ public struct AsyncResourceDefaultFailureView: View {
     }
 }
 
-struct AsyncResourceDefaultFailureView_Previews: PreviewProvider {
+struct DefaultFailureView_Previews: PreviewProvider {
     static var previews: some View {
         let error = NSError(domain: "any Domain", code: 42, userInfo: nil)
-        AsyncResourceDefaultFailureView(error: error, retry: {})
+        DefaultFailureView(error: error, retry: {})
             .previewLayout(.sizeThatFits)
     }
 }
