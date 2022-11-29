@@ -4,14 +4,14 @@ import AsyncResourceView
 import SwiftUI
 
 struct GalleryItemView: View {
-    private let store: AsyncResourceViewStore<Color>
+    private let loader: () async throws -> Color
 
-    init(store: AsyncResourceViewStore<Color>) {
-        self.store = store
+    init(loader: @escaping () async throws -> Color) {
+        self.loader = loader
     }
 
     var body: some View {
-        AsyncResourceView(store: store) { color in
+        AsyncResourceView(loader: loader) { color in
             color
         }
     }

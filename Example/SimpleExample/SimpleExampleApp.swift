@@ -9,7 +9,7 @@ struct SimpleExampleApp: App {
         WindowGroup {
             NavigationView {
                 AsyncResourceView(
-                    store: AsyncResourceViewStore(loader: loader),
+                    loader: loader,
                     notRequestedView: notRequestedView(load:),
                     successView: successView(resource:)
                 )

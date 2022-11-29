@@ -6,9 +6,9 @@ struct AsyncResourceView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             AsyncResourceView(
-                store: AsyncResourceViewStore(state: .success("Hello World")),
+                state: .success("Hello World"),
                 successView: { text in
-                    AnyView(Text(text))
+                    Text(text)
                 }
             )
             .navigationTitle("Static Preview")
@@ -16,13 +16,13 @@ struct AsyncResourceView_Previews: PreviewProvider {
 
         NavigationView {
             AsyncResourceView(
-                store: AsyncResourceViewStore(loader: loader),
+                loader: loader,
                 notRequestedView: { load in
                     Button("Load Resource", action: load)
                         .buttonStyle(.borderedProminent)
                 },
                 successView: { text in
-                    AnyView(Text(text))
+                    Text(text)
                 }
             )
             .navigationTitle("Interactive Preview")
